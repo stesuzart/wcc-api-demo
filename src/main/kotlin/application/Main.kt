@@ -2,6 +2,8 @@ package application
 
 import dao.LocationDao
 import io.javalin.Javalin
+import io.javalin.apibuilder.ApiBuilder.*
+import model.Location
 
 fun main(){
 
@@ -16,22 +18,59 @@ fun main(){
     app.routes {
 
         //TODO EXERCICIO 1
-        //insira seu código aqui
+        get("/locations") { ctx ->
+            ctx.json(locationDao.getAll())
+        }
 
         //TODO EXERCICIO 2
-        //insira seu código aqui
+        get("/locations/{id}") { ctx ->
+            val id = ctx.pathParam("id").toInt()
+            val resultado: Location? = locationDao.findById(id)
 
-        /*TODO DESAFIO 1
-        * Dica: Utilize essa variavel abaixo para pegar o body da requisição
-        *
-        * val localizacao = ctx.bodyAsClass<Location>()
-        * */
+            if(resultado != null) {
+               ctx.json(locationDao.findById(id)!!)
+            } else {
+                ctx.status(404)
+            }
+        }
+
+        //TODO DESAFIO 1
+        post("/locations") { ctx->
+            val localizacao = ctx.bodyAsClass<Location>()
+            locationDao.save(localizacao.mensagem, localizacao.longitude, localizacao.latitude,localizacao.planeta, localizacao.galaxia)
+            ctx.status(201)
+            ctx.result("Created")
+
+        }
 
         //TODO DESAFIO 2
-        //insira seu código aqui
+        delete("/locations/{id}") { ctx ->
+            val id = ctx.pathParam("id").toInt()
+            val resultado: Location? = locationDao.findById(id)
+
+            if(resultado != null) {
+                locationDao.delete(id)
+                ctx.status(204)
+            } else {
+                ctx.status(404)
+            }
+
+        }
 
         //TODO DESAFIO 3
-        //insira seu código aqui
+        patch("/locations/{id}") { ctx ->
+            val localizacao = ctx.bodyAsClass<Location>()
+            val id = ctx.pathParam("id").toInt()
+            val result: Location? = locationDao.findById(id)
+
+            if(result != null) {
+                locationDao.update(id, localizacao)
+                ctx.status(204)
+            } else {
+                ctx.status(404)
+            }
+
+        }
 
     }
 
