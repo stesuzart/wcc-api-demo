@@ -1,5 +1,0 @@
-{"id":0,"mensagem":"Voce esta em algum lugar na galaxia Andromedra","longitude":41.40338,"latitude":2.17403,"galaxia":"Andromedra","planeta":"planeta nao identificado"}
-{"id":1,"mensagem":"Voce esta no Planeta de Gatos Super Carinhosos","longitude":81.40338,"latitude":8.17403,"galaxia":"galaxia nao identificado","planeta":"Gatos Super Carinhosos"}
-{"id":2,"mensagem":"Faco a minima ideia, nao foi nomeado ainda este planeta","longitude":61.40338,"latitude":6.17403,"galaxia":"Xingablau","planeta":"planeta nao identificado"}
-{"id":3,"mensagem":"Hummmm... nao conheco essa localizacao, voce tera que inseri-la","longitude":0.0,"latitude":0.0,"galaxia":"galaxia nao identificado","planeta":"planeta nao identificado"}
-{"id":4,"mensagem":"Hummmm... nao conheco essa localizacao, voce tera que inseri-la","longitude":0.0,"latitude":0.0,"galaxia":"galaxia nao identificado","planeta":"planeta nao identificado"}
