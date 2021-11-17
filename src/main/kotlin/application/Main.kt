@@ -20,17 +20,15 @@ fun main() {
 
         //TODO EXERCICIO 1
         get("/locations") { ctx ->
-            ctx.json(locationDao.getAll())
+            ctx.json(locationDao.getActualLocation()!!)
             ctx.status(200)
         }
 
 
         //TODO EXERCICIO 2
         get("/locations/{Location-id}") { ctx ->
-            ctx.json(
-                locationDao.findById(
-                    ctx.pathParam("Location-id").toInt()
-                )!!)
+            val id = locationDao.findById(ctx.pathParam("Location-id").toInt())!!
+            ctx.json(id)
             ctx.status(200)
 
         }
@@ -50,20 +48,19 @@ fun main() {
 
 
         //TODO DESAFIO 2
-        delete("/locations/{Location-id}") { ctx ->
-            ctx.json(
-                locationDao.delete(
-                    ctx.pathParam("Location-id").toInt()
-                )!!
-            )
+        delete("/locations/{id}") { ctx ->
+            val del = locationDao.delete(
+                ctx.pathParam("id").toInt()
+            )!!
+            ctx.json(del)
             ctx.status(204)
         }
 
 //        //TODO DESAFIO 3
-       patch("/locations/{Location-id}") { ctx ->
+       patch("/locations/{id}") { ctx ->
             val Local = ctx.bodyAsClass<Location>()
               locationDao.update(
-                id = ctx.pathParam("Location-id").toInt(),
+                id = ctx.pathParam("id").toInt(),
                 location = Local
 
               )
